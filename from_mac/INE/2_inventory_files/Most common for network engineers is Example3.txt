@@ -1,6 +1,0 @@
-
-
-
-
-use alias with a static IP. This is most common for netowrk engineeers because the IP addresses do not change that often
-

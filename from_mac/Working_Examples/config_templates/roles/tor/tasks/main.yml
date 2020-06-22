@@ -1,4 +1,0 @@
----
-- name: Generate configuration files
-  template: src={{ item.profile }}.j2 dest=./configs_output/{{ item.hostname }}.txt
-  with_items: "{{ switches }}"
