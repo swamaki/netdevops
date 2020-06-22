@@ -13,7 +13,7 @@
     tasks:
       ios_ping:
         provider: "{{ provider }}"
-        dest: 10.134.4.1 
+        dest: 10.132.4.1 
       
     #- name: Test reachability to All Devices from VLAN4
     #  ios_ping:
