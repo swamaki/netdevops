@@ -13,3 +13,4 @@
         dest="output_ansible/{{inventory_hostname}}_showoutput.log"
 
 # for ansible==2.9.9, provider is deprecated and therefore vars does not need to be used here. 
+# for ansible==2.9.9, provider is deprecated and therefore vars does not need to be used here. 

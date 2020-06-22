@@ -1,0 +1,50 @@
+---
+- name: Save Configurations (IOS)
+  hosts: dmz_switches
+  gather_facts: no
+  connection: local
+  vars:
+    creds:
+      #host: "{{ inventory_hostname }}"
+      #username: "ntc"
+      #password: "********"
+      host: "{{ host }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      #transport: "cli"
+  tasks:
+    - ios_command:
+        provider: "{{ creds }}"
+        commands:
+          - show run
+          - show version
+          #- show module
+          - show cdp neighbor
+          - show cdp neighbor detail
+          #- show ip route
+          - show ip default
+          #- show ip eigrp/ospf neig
+          - show vlan
+          - show vlan brief
+          - show interface status
+          - show interface status | include connected
+          - show interface trunk
+          - show int etherchannel
+          - show etherchannel summary
+          - show ip interface brief | exclude unass
+          - show vtp status
+          #- show standby brief
+          - show spanning-tree 
+          - show spanning-tree root
+          #- show proc cpu sorted
+          #- show proc cpu history
+          - dir                   
+      register: show_output
+
+    - debug:
+        var: show_output
+
+    - template:
+        src: "cmd_out.j2"
+        #dest: '/tmp/show_commands.txt'
+        dest: "./output_gafg/show_output_{{ inventory_hostname }}.txt"

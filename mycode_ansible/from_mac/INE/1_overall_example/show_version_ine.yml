@@ -1,0 +1,32 @@
+---
+# cd /etc/ansible/ine_examples
+# ansible-playbook -i hosts show_version_ine.yml -u admin -k 
+
+- name: Show Version 
+# hosts: all
+  hosts: "ios-devices"
+  gather_facts: false
+  connection: local
+
+  vars:
+    cli:
+      host: "{{ inventory_hostname }}"
+      username: admin
+      password: "@lph@!ST1"
+      #transport: cli
+  
+  tasks:
+    - name: show version 
+      ios_command:
+        commands: show version
+        provider: "{{ cli }}" 
+      register: output
+  
+    - name: show output
+      debug: 
+        var: output.stdout
+  
+    - name: save output to a file
+      copy: content="{{ output }}" dest=./output_ine/{{ inventory_hostname }}.txt
+      #copy: content="{{ print_output.stdout[0] }}" dest="./output/{{ inventory_hostname }}.txt"
+

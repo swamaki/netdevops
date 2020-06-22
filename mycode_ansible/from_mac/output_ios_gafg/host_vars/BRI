@@ -1,0 +1,3 @@
+---
+ansible_ssh_host: 10.134.4.1
+ansible_ssh_pass: Welcome!1122

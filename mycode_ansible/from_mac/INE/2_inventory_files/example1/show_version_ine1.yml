@@ -1,0 +1,35 @@
+---
+# cd /etc/ansible/ine_examples
+# ansible-playbook -i hosts_1 show_version_ine1.yml
+
+- name: Show Version 
+# hosts: all
+  hosts: "ios-devices"
+  gather_facts: false
+  connection: local
+
+  vars:
+    cli:
+      # By default the host needs to be IP address or resolvable
+      host: "{{ inventory_hostname }}"
+      # Note. The username and password are variables instead of statically configured
+      username: "{{ ansible_ssh_user }}"
+      password: "{{ ansible_ssh_password }}"
+      #transport: cli
+  
+  tasks:
+    - name: show version 
+      ios_command:
+        commands: show version
+        provider: "{{ cli }}" 
+
+      register: output
+  
+    - name: show output
+      debug: 
+        var: output.stdout
+  
+    - name: save output to a file
+      copy: content="{{ output }}" dest=./output_ine/{{ inventory_hostname }}.txt
+      #copy: content="{{ print_output.stdout[0] }}" dest="./output/{{ inventory_hostname }}.txt"
+

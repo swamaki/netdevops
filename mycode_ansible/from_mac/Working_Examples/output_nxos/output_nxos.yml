@@ -1,0 +1,26 @@
+---
+# cd /private/etc/ansible/Working_Examples/output_nxos_switches
+# ansible-playbook -i hosts_nxos output_nxos.yml 
+
+- name: Save running config to file (NXOS)
+# hosts: all
+  hosts: border_switches
+  gather_facts: no
+  connection: local
+
+  vars:
+    creds:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        transport: cli
+
+  tasks:
+    - nxos_command:
+        provider: "{{ creds }}"
+        commands: show running-config
+      register: show_run
+
+    - copy:
+        content: "{{ show_run.stdout[0] }}"
+        dest: "./output_nxos/show_run_{{ inventory_hostname }}.txt" 

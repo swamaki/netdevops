@@ -1,0 +1,7 @@
+[inet_routers]
+isr1 ansible_host=8.12.244.2
+isr2 ansible_host=8.12.244.3
+
+[border_switches]
+border1 ansible_host=10.10.14.2
+border2 ansible_host=10.10.14.3

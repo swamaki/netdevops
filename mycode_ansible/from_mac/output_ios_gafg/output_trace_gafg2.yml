@@ -1,0 +1,25 @@
+---
+- name: Run traceroute commands
+  hosts: core_switches_branches2
+  gather_facts: false
+  connection: local
+  #remote_user: cisco
+
+  vars:
+    loopbacks: {
+    "BRI": "10.134.4.1",
+    "BMU": "10.136.4.1",
+    "ATL": "10.138.4.1",
+    "HOU": "10.170.4.1",
+    }
+
+  tasks:
+
+    - name: run traceroute to every other host
+      raw: traceroute {{ item.value }} source Loopback0 probe 1 numeric
+      when: item.key != inventory_hostname
+      with_dict: loopbacks
+      register: trace_result
+
+#    - name: Debug registered variables
+#      debug: var=trace_result

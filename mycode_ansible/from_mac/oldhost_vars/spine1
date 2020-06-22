@@ -1,0 +1,4 @@
+---
+ansible_ssh_host: 10.10.11.2
+ansible_ssh_user: admin
+ansible_ssh_password: @lph@!ST1

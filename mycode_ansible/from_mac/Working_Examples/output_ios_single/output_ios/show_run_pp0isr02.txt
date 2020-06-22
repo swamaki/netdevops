@@ -1,0 +1,189 @@
+Building configuration...
+
+
+Current configuration : 3686 bytes
+!
+! Last configuration change at 17:00:46 EDT Fri Oct 27 2017 by sramadmin
+! NVRAM config last updated at 17:00:49 EDT Fri Oct 27 2017 by sramadmin
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+platform hardware throughput level 1000000
+!
+hostname pp0isr02
+!
+boot-start-marker
+boot system bootflash:isr4400-universalk9.03.16.04b.S.155-3.S4b-ext.SPA.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 5 $1$owag$owI7t943dtjk6gS3rsrD7/
+!
+no aaa new-model
+clock timezone EST -5 0
+clock summer-time EDT recurring
+!
+!
+!
+
+no ip domain lookup
+ip domain name sram.local
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+multilink bundle-name authenticated
+!
+!
+!
+!
+license udi pid ISR4431/K9 sn FOC212084K5
+archive
+ log config
+  logging enable
+  logging size 1000
+  hidekeys
+!
+spanning-tree extend system-id
+!
+username sramadmin privilege 15 secret 5 $1$njXr$3UgMKqK4.x5qxYjBtsj1o0
+username admin privilege 15 secret 5 $1$F89z$P48eJ/dzcmihJhDcoBl7y.
+!
+redundancy
+ mode none
+!
+!
+vlan internal allocation policy ascending
+!
+track 1 ip sla 1 reachability
+ delay down 15 up 15
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ description Level3 Internet Handoff
+ ip address 4.15.145.50 255.255.255.252
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ description Secondary External Switch pp0ext01b G1/0/1
+ ip address 8.12.244.3 255.255.255.0
+ standby 8 ip 8.12.244.1
+ standby 8 priority 120
+ standby 8 preempt
+ standby 8 track 1 decrement 20
+ negotiation auto
+!
+interface GigabitEthernet0/0/2
+ description Level3 Internet Handoff
+ no ip address
+ no negotiation auto
+!
+interface GigabitEthernet0/0/3
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ negotiation auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router bgp 17076
+ bgp log-neighbor-changes
+ network 8.12.244.0 mask 255.255.255.0
+ neighbor 4.15.145.49 remote-as 3356
+ neighbor 4.15.145.49 description Cogent iBGP Router
+ neighbor 4.15.145.49 soft-reconfiguration inbound
+ neighbor 4.15.145.49 route-map ROUTE_MAP_IN in
+ neighbor 4.15.145.49 route-map ROUTE_MAP_OUT out
+ neighbor 8.12.244.2 remote-as 17076
+ neighbor 8.12.244.2 description iBGP to Level3 router
+ neighbor 8.12.244.2 next-hop-self
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+ip tftp source-interface GigabitEthernet0/0/0
+ip route 0.0.0.0 0.0.0.0 4.15.145.49 254
+!
+!
+ip access-list standard SSH_ACCESS
+ permit 76.204.99.238
+ permit 50.74.215.64 0.0.0.31
+ permit 199.102.115.32 0.0.0.31
+ permit 69.176.98.0 0.0.0.255
+ permit 64.238.150.224 0.0.0.31
+ permit 8.12.244.0 0.0.0.255
+ permit 38.76.24.0 0.0.0.31
+ permit 38.98.120.48 0.0.0.15
+ permit 69.193.172.56 0.0.0.7
+!
+!
+ip prefix-list ROUTES_INBOUND seq 10 permit 0.0.0.0/0
+!
+ip prefix-list ROUTES_OUTBOUND seq 10 permit 8.12.244.0/24
+ip sla 1
+ icmp-echo 8.8.8.8 source-ip 4.15.145.50
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 1 life forever start-time now
+!
+route-map ROUTE_MAP_IN permit 10
+ match ip address prefix-list ROUTES_INBOUND
+!
+route-map ROUTE_MAP_OUT permit 10
+ match ip address prefix-list ROUTES_OUTBOUND
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ privilege level 15
+ logging synchronous
+ login local
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ access-class SSH_ACCESS in
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 15
+ access-class SSH_ACCESS in
+ logging synchronous
+ login local
+ transport input ssh
+!
+ntp server 192.5.41.40
+ntp server 192.5.41.41
+!
+end
