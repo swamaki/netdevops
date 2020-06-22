@@ -1,0 +1,11 @@
+show config
+show run
+show run vlan
+show run interface
+show interface status
+show interfaces brief 
+show ip os nei
+show ip route
+show arp
+show lldp info remote-device 
+show lldp info remote-device ethernet 1-48

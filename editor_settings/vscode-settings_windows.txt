@@ -1,0 +1,63 @@
+// Ctrl + shift + P to open up command pallette
+// type color themes and install additional themes
+// search for predawn, install and choose
+// command pallete and search for file icons -- Ayu
+// When it overrides the default predawn color theme, go back choose predawn and selectively choose file icon.
+// Ctrl +~ opens integrated IDE
+// create virtual env using the venv module on the IDE: "python -m venv my_venv"
+// click on python version on lower left hand and select python version with the created venv.
+// install black formatter
+// install pylint
+// install code runner
+// integrate git source control
+// zen mode Ctrl + K + Z or command pallette look for zen mode and toggle
+{
+    "workbench.colorTheme": "Predawn",
+    "workbench.iconTheme": "ayu",
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultSettings": false,
+    "workbench.startupEditor": "newUntitledFile",
+    //"python.pythonPath": "C:\\Users\\swama\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.pythonPath": "C:\\Users\\swama\\Dropbox\\DevNet\\my_code_samples\\my_venv\\Scripts\\python.exe",
+    //"python.pythonPath": "/usr/local/bin/python3",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\Users\\swama\\Dropbox\\DevNet\\my_code_samples"
+    },
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#787878",
+        "editor.selectionHighlightBackground": "#787878"
+    },
+    "editor.fontSize": 12,
+    "editor.fontWeight": "500",
+    "editor.fontFamily": "Source Code Pro",
+    "debug.console.fontFamily": "Source Code Pro",
+    "debug.console.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontWeight": "600",
+    "window.zoomLevel": 1,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "code-runner.executorMap": {
+        "python": "$pythonPath -u $fullFileName"
+    },
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.showExecutionMessage": false,
+    "code-runner.ignoreSelection": true,
+    "code-runner.saveFileBeforeRun": true,
+    "[plaintext]": {
+        "editor.quickSuggestions": false
+    },
+    "editor.quickSuggestionsDelay": 100,
+    "zenMode.centerLayout": false,
+    "zenMode.fullScreen": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideTabs": false,
+    "editor.minimap.enabled": false,
+    "workbench.statusBar.feedback.visible": false,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true
+}

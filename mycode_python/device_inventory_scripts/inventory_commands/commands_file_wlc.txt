@@ -1,0 +1,7 @@
+show inventory
+show ap join stats summary all
+show wlan summary
+show interface summary
+show dhcp summary
+show snmpversion
+show snmptrap

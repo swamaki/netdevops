@@ -1,0 +1,10 @@
+!
+login block-for 60 attempts 3 within 60
+login on-failure log
+login on-success log
+!
+!
+logging discriminator FIRE_EYE facility includes SEC_LOGIN mnemonics includes LOGIN_
+logging host <syslog server ip_address> discriminator FIRE_EYE
+!
+

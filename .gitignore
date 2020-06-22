@@ -1,0 +1,9 @@
+ansible/
+books/
+devnet_creds.txt
+forked_ansible/
+forked_python/
+from_mac/
+mynotes/
+venv/
+.env

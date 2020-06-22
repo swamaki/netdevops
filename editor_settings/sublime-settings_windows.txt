@@ -1,0 +1,79 @@
+// install package manager (Tools-->command pallette-->type install)
+// use package manager to install predawn(Tools-->command pallette-->select policy package manager by typing install-->type 'predawn')
+// use package manager to install material theme (Tools-->command pallette-->select policy package manager by typing install-->type 'material')
+// download Source Code Pro fonts from google fonts (choose the light, extralight, medium, regular types)
+// install bracket Highlighter
+// install sidebar enhancements
+// drop box link for settings \Dropbox\DevNet\Setting up the python Environment
+// install anaconda -- different from python distribution from Continuum Analytics, its just a sublime package. Copy anaconda settings from the to preferences--package settings--anaconda--anaconda--user settings
+// anaconda formats your code to proper pep8 format. if there are extra lines, it will auto format them.
+// Build systems - copy settings to Tools--Build system--new build system. Define this for python 3.5
+// helpful shortcuts:
+//      ctrl+[]- move block of text;
+//      ctrl+alt+up/down - select column;
+//      ctrl+shift+up/down-move a line up/down
+//      Ctrl + K, Ctrl + U(windows), cmd + KU(mac)  Transform to Uppercase
+//      Ctrl + K, Ctrl + L(windows), cmd + KL(mac)  Transform to Lowercase
+//      Ctrl + D Multiple Cursors, put your cursor on the word you want highlighted and hit CTRL/⌘-D till you have selected all the words you want.
+//      Ctrl + Mouseclick, Multiple Cursors, You can also create multiple cursors with CTRL/⌘-MOUSECLICK in all the places you want to have a cursor.
+// find out how to select multiple lines sublime
+{
+    "color_scheme": "Packages/Predawn/predawn.tmTheme",
+    "theme": "Material-Theme-Darker.sublime-theme",
+    //"theme": "predawn.sublime-theme",
+    "material_theme_accent_graphite": true,
+    "material_theme_compact_sidebar": true,
+
+    "font_face": "Source Code Pro",
+    "font_options":
+    [
+        "no_round"
+    ],
+    "font_size": 11,
+
+    "bold_folder_labels": true,
+    "caret_extra_width": 1,
+    "caret_style": "phase",
+    "close_windows_when_empty": false,
+    "copy_with_empty_selection": false,
+    "drag_text": false,
+    "draw_minimap_border": true,
+    "draw_white_space": "selection",
+    "enable_tab_scrolling": false,
+    //"ensure_newline_at_eof_on_save": true,
+    "highlight_line": true,
+    "highlight_modified_tabs": true,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "installed_packages":
+    [
+        "Anaconda",
+        "BracketHighlighter",
+        "Material Theme",
+        "Predawn",
+        "SideBarEnhancements"
+    ],
+    "line_padding_bottom": 1,
+    "line_padding_top": 1,
+    "match_brackets_content": false,
+    "match_selection": false,
+    "match_tags": false,
+    "mini_diff": false,
+    "open_files_in_new_window": false,
+    "overlay_scroll_bars": "enabled",
+    "preview_on_click": false,
+    "scroll_past_end": true,
+    "scroll_speed": 5.0,
+    "show_definitions": false,
+    "show_encoding": true,
+    "show_errors_inline": false,
+    "show_full_path": false,
+    "sidebar_default": true,
+    "swallow_startup_errors": true,
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": true,
+    "use_simple_full_screen": true,
+    "word_wrap": false
+}
