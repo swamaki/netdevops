@@ -4,7 +4,7 @@
 
 - name: Show Version 
 # hosts: all
-  hosts: "ios-devices"
+  hosts: routers
   gather_facts: false
   connection: local
 
@@ -12,7 +12,7 @@
     cli:
       host: "{{ inventory_hostname }}"
       username: admin
-      password: "@lph@!ST1"
+      password: "cisco123"
       #transport: cli
   
   tasks:
