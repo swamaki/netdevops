@@ -7,3 +7,4 @@ from_mac/
 mynotes/
 venv/
 .env
+*.DS_Store/
