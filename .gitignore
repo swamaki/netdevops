@@ -1,6 +1,7 @@
 ansible/
 books/
 devnet_creds.txt
+editor_settings/
 forked_ansible/
 forked_python/
 from_mac/
