@@ -12,7 +12,7 @@ import netdev
 """
 works as of 05/01/2020
 
-cd into "device_inventory_scripts" folder and execute the script
+cd into "device_inventory" folder and execute the script
 """
 
 
