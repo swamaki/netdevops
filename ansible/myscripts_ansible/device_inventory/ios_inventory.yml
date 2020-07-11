@@ -1,0 +1,23 @@
+---
+- hosts: switches_core
+  tasks:
+    - name: Run show commands for ios devices
+      register: commands_output
+      ios_command:
+        commands:
+          - show ip interface brief
+          - show run
+          - show version
+    - debug:
+        var: commands_output
+
+    - template:
+        src: "commands_output.j2"
+        dest: "./device_output/output_{{ inventory_hostname }}.txt"
+
+    # - debug:
+    #     msg: "===========================================" 
+
+# Works as of 07/10/2020. 
+# outputs and appends the outputs to file. 
+# Need to sanitize the output a little better with better documentation of the outputs

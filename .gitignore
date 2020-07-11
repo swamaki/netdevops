@@ -7,7 +7,6 @@ ansible/ansible.cfg
 ansible/inventory_raw.yml
 ansible/inventory.yml
 ansible/forked_ansible/
-ansible/from_mac/
 
 books/
 devnet_creds.txt
