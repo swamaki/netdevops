@@ -1,12 +1,15 @@
 ---
-- hosts: switches_core
+- name: "Auditing Device Configuration"
+  hosts: switches_core
+  gather_facts: false
+  connection: network_cli
   tasks:
     - name: Run show commands for ios devices
       register: commands_output
       ios_command:
         commands:
           - show ip interface brief
-          - show run
+          - show interface status
           - show version
     - debug:
         var: commands_output

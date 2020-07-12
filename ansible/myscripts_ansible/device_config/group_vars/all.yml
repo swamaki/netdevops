@@ -1,0 +1,15 @@
+---
+ios_provider:
+  username: "{{ ansible_user }}"
+  password: "{{ ansible_password }}"
+  host: "{{ inventory_hostname }}"
+
+snmp:
+  contact: swamaki
+  location: 123 Boulevard
+  ro:
+    - jinja2ro1
+    - jinja2ro2
+  rw:
+    - jinja2rw3
+
