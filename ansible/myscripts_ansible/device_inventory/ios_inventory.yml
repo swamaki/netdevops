@@ -2,7 +2,7 @@
 - name: "Auditing Device Configuration"
   hosts: switches_core
   gather_facts: false
-  connection: network_cli
+  # connection: network_cli
   tasks:
     - name: Run show commands for ios devices
       register: commands_output
@@ -21,6 +21,7 @@
     # - debug:
     #     msg: "===========================================" 
 
+# ansible-playbook ios_inventory.yml
 # Works as of 07/10/2020. 
 # outputs and appends the outputs to file. 
 # Need to sanitize the output a little better with better documentation of the outputs

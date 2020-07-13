@@ -1,5 +1,5 @@
 ---
-ios_provider:
+credentials:
   username: "{{ ansible_user }}"
   password: "{{ ansible_password }}"
   host: "{{ inventory_hostname }}"
