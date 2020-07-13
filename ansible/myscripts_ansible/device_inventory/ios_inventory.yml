@@ -24,3 +24,4 @@
 # Works as of 07/10/2020. 
 # outputs and appends the outputs to file. 
 # Need to sanitize the output a little better with better documentation of the outputs
+# use the group_vars to determine OS types and other connection parameters

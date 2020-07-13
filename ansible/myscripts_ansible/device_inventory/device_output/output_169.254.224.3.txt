@@ -45,7 +45,7 @@ Compiled Tue 28-Jul-15 18:52 by sasyamal
 
 ROM: Bootstrap program is IOSv
 
-CORE-2 uptime is 7 hours, 41 minutes
+CORE-2 uptime is 1 day, 5 hours, 19 minutes
 System returned to ROM by reload
 System image file is "flash0:/vios_l2-adventerprisek9-m"
 Last reload reason: Unknown reason
