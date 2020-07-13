@@ -21,7 +21,7 @@
     # - debug:
     #     msg: "===========================================" 
 
-# ansible-playbook ios_inventory.yml
+# ansible-playbook backup_device_state.yml
 # Works as of 07/10/2020. 
 # outputs and appends the outputs to file. 
 # Need to sanitize the output a little better with better documentation of the outputs

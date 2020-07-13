@@ -1,0 +1,13 @@
+---
+- name: "Auditing Device Configuration"
+  hosts: routers
+  gather_facts: false
+  # connection: network_cli
+  tasks:
+    - name: Run show commands for ios devices
+      ios_config:
+        backup: yes
+
+# ansible-playbook backup_config.yml
+# Works as of 07/10/2020. 
+# Will backup running config by saving them to ./backup/file_name
