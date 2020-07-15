@@ -1,0 +1,341 @@
+2020-07-13 21:33:23,134 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-13 21:34:53,964 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-13 21:35:36,277 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-13 21:38:14,393 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-14 11:24:13,538 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-14 12:48:21,513 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-14 12:50:51,447 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-14 12:52:03,331 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'interfaces', 'arp_table']} on 2 hosts
+2020-07-14 17:41:32,414 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'arp_table']} on 2 hosts
+2020-07-14 17:42:33,514 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 90, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.11:22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/napalm_get.py", line 49, in napalm_get
+    device = task.host.get_connection("napalm", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/napalm.py", line 51, in open
+    connection.open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/ios/ios.py", line 168, in open
+    self.device = self._netmiko_open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 99, in _netmiko_open
+    raise ConnectionException("Cannot connect to {}".format(self.hostname))
+napalm.base.exceptions.ConnectionException: Cannot connect to 169.254.224.11
+
+2020-07-14 17:42:33,515 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-2': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 90, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.12:22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/napalm_get.py", line 49, in napalm_get
+    device = task.host.get_connection("napalm", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/napalm.py", line 51, in open
+    connection.open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/ios/ios.py", line 168, in open
+    self.device = self._netmiko_open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 99, in _netmiko_open
+    raise ConnectionException("Cannot connect to {}".format(self.hostname))
+napalm.base.exceptions.ConnectionException: Cannot connect to 169.254.224.12
+
+2020-07-14 17:42:50,630 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh arp'} on 2 hosts
+2020-07-14 17:44:06,154 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.11:22
+
+2020-07-14 17:44:06,156 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.12:22
+
+2020-07-14 17:45:00,701 -  nornir.core -     INFO -        run() - Running task 'napalm_get' with args {'getters': ['facts', 'arp_table']} on 2 hosts
+2020-07-14 17:46:00,818 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-2': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 90, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.12:22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/napalm_get.py", line 49, in napalm_get
+    device = task.host.get_connection("napalm", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/napalm.py", line 51, in open
+    connection.open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/ios/ios.py", line 168, in open
+    self.device = self._netmiko_open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 99, in _netmiko_open
+    raise ConnectionException("Cannot connect to {}".format(self.hostname))
+napalm.base.exceptions.ConnectionException: Cannot connect to 169.254.224.12
+
+2020-07-14 17:46:00,822 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-1': task 'napalm_get' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 90, in _netmiko_open
+    self._netmiko_device = ConnectHandler(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.11:22
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/napalm_get.py", line 49, in napalm_get
+    device = task.host.get_connection("napalm", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/napalm.py", line 51, in open
+    connection.open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/ios/ios.py", line 168, in open
+    self.device = self._netmiko_open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/napalm/base/base.py", line 99, in _netmiko_open
+    raise ConnectionException("Cannot connect to {}".format(self.hostname))
+napalm.base.exceptions.ConnectionException: Cannot connect to 169.254.224.11
+
+2020-07-14 17:46:18,182 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip route'} on 2 hosts
+2020-07-14 17:47:33,373 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.12:22
+
+2020-07-14 17:47:33,374 - nornir.core.task -    ERROR -      start() - Host 'ACCESS-1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.11:22
+
+2020-07-14 18:31:43,435 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh arp'} on 2 hosts
+2020-07-14 19:13:26,250 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh arp'} on 2 hosts
+2020-07-14 19:14:50,318 -  nornir.core -     INFO -        run() - Running task 'netmiko_send_command' with args {'command_string': 'sh ip int br'} on 2 hosts
+2020-07-14 19:51:23,668 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 2 hosts
+2020-07-14 19:52:05,360 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 2 hosts

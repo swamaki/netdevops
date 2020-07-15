@@ -1,0 +1,2 @@
+2020-07-14 20:31:36,328 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 2 hosts
+2020-07-14 20:46:36,653 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 2 hosts
