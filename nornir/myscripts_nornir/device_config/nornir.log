@@ -1,2 +1,118 @@
 2020-07-14 20:31:36,328 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 2 hosts
 2020-07-14 20:46:36,653 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 2 hosts
+2020-07-14 22:04:16,841 -  nornir.core -     INFO -        run() - Running task 'baseconfig' with args {} on 14 hosts
+2020-07-14 22:04:21,755 - nornir.core.task -    ERROR -      start() - Host 'vMX-1': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_config.py", line 25, in netmiko_send_config
+    net_connect.enable()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/cisco_base_connection.py", line 21, in enable
+    return super(CiscoBaseConnection, self).enable(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 1470, in enable
+    raise ValueError(msg)
+ValueError: Failed to enter enable mode. Please ensure you pass the 'secret' argument to ConnectHandler.
+
+2020-07-14 22:04:21,755 - nornir.core.task -    ERROR -      start() - Host 'vMX-1': task 'baseconfig' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "config_changes.py", line 8, in baseconfig
+    command_output.run(task=netmiko_send_config, config_file= "config_file.cfg")
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 147, in run
+    raise NornirSubTaskError(task=task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: <function netmiko_send_config at 0x7fecceb9e790> (failed)
+
+
+2020-07-14 22:04:21,763 - nornir.core.task -    ERROR -      start() - Host 'vMX-2': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_config.py", line 25, in netmiko_send_config
+    net_connect.enable()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/cisco_base_connection.py", line 21, in enable
+    return super(CiscoBaseConnection, self).enable(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 1470, in enable
+    raise ValueError(msg)
+ValueError: Failed to enter enable mode. Please ensure you pass the 'secret' argument to ConnectHandler.
+
+2020-07-14 22:04:21,764 - nornir.core.task -    ERROR -      start() - Host 'vMX-2': task 'baseconfig' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "config_changes.py", line 8, in baseconfig
+    command_output.run(task=netmiko_send_config, config_file= "config_file.cfg")
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 147, in run
+    raise NornirSubTaskError(task=task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: <function netmiko_send_config at 0x7fecceb9e790> (failed)
+
+
+2020-07-14 22:04:23,189 - nornir.core.task -    ERROR -      start() - Host 'vMX-vCP': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_config.py", line 25, in netmiko_send_config
+    net_connect.enable()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/cisco_base_connection.py", line 21, in enable
+    return super(CiscoBaseConnection, self).enable(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 1470, in enable
+    raise ValueError(msg)
+ValueError: Failed to enter enable mode. Please ensure you pass the 'secret' argument to ConnectHandler.
+
+2020-07-14 22:04:23,190 - nornir.core.task -    ERROR -      start() - Host 'vMX-vCP': task 'baseconfig' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "config_changes.py", line 8, in baseconfig
+    command_output.run(task=netmiko_send_config, config_file= "config_file.cfg")
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 147, in run
+    raise NornirSubTaskError(task=task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: <function netmiko_send_config at 0x7fecceb9e790> (failed)
+
+
+2020-07-14 22:05:32,792 - nornir.core.task -    ERROR -      start() - Host 'NEXUS-2': task 'netmiko_send_config' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_config.py", line 24, in netmiko_send_config
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.84:22
+
+2020-07-14 22:05:32,793 - nornir.core.task -    ERROR -      start() - Host 'NEXUS-2': task 'baseconfig' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "config_changes.py", line 8, in baseconfig
+    command_output.run(task=netmiko_send_config, config_file= "config_file.cfg")
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 147, in run
+    raise NornirSubTaskError(task=task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: <function netmiko_send_config at 0x7fecceb9e790> (failed)
+
+

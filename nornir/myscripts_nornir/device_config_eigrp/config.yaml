@@ -1,0 +1,11 @@
+---
+core:
+    num_workers: 100
+
+
+inventory:
+    plugin: nornir.plugins.inventory.simple.SimpleInventory
+    options:
+        host_file: "~/Dropbox/netdevops/nornir/myscripts_nornir/device_config_eigrp/hosts.yaml"
+        group_file: "~/Dropbox/netdevops/nornir/groups.yaml"
+        defaults_file: "~/Dropbox/netdevops/nornir/defaults.yaml"

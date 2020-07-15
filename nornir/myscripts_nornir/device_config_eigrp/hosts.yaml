@@ -1,0 +1,185 @@
+---
+# ACCESS-1:
+#     hostname: 169.254.224.11
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: access
+
+# ACCESS-2:
+#     hostname: 169.254.224.12
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: access
+
+# ACCESS-3:
+#     hostname: 169.254.224.13
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: access
+
+# ACCESS-4:
+#     hostname: 169.254.224.14
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: access
+
+# ACCESS-5:
+#     hostname: 169.254.224.15
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: access
+
+CORE-1:
+    hostname: 169.254.224.2
+    platform: 'ios'
+    username: admin
+    password: cisco123
+    groups:
+        - cisco_group
+    data:
+        country: usa
+        asn: 100
+        domain: swamaki_eigrp
+        role: core
+
+
+CORE-2:
+    hostname: 169.254.224.3
+    platform: 'ios'
+    username: admin
+    password: cisco123
+    groups:
+        - cisco_group
+    data:
+        country: usa
+        asn: 100
+        domain: swamaki_eigrp
+        role: core
+
+ROUTER-1:
+    hostname: 169.254.224.4
+    platform: 'ios'
+    username: admin
+    password: cisco123
+    groups:
+        - cisco_group
+    data:
+        country: usa
+        asn: 100
+        domain: swamaki_eigrp
+        role: router
+
+ROUTER-2:
+    hostname: 169.254.224.5
+    platform: 'ios'
+    username: admin
+    password: cisco123
+    groups:
+        - cisco_group
+    data:
+        country: usa
+        asn: 100
+        domain: swamaki_eigrp
+        role: router
+
+# NEXUS-1:
+#     hostname: 169.254.224.83
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: nexus
+
+# NEXUS-2:
+#     hostname: 169.254.224.84
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: nexus
+
+# vMX-1:
+#     hostname: 169.254.224.85
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: juniper
+
+# vMX-2:
+#     hostname: 169.254.224.86
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group 
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: juniper
+
+
+# vMX-vCP:
+#     hostname: 169.254.224.87
+#     platform: 'ios'
+#     username: admin
+#     password: cisco123
+#     groups:
+#         - cisco_group
+#     data:
+#         country: usa
+#         asn: 100
+#         domain: swamaki_eigrp
+#         role: juniper
+      
