@@ -28,3 +28,4 @@ venv/
 venv_nornir/
 
 *.DS_Store/
+.vscode
