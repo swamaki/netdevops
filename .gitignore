@@ -7,6 +7,7 @@ ansible/ansible.cfg
 ansible/inventory_raw.yml
 ansible/inventory.yml
 ansible/forked_ansible/
+ansible/vault_password.yml
 
 books/
 devnet_creds.txt
@@ -17,8 +18,6 @@ nornir/forked_nornir/
 nornir/greptool
 nornir/groups.yaml
 nornir/hosts.yaml
-nornir/nornir_script1.py
-nornir/nornir_script2.py
 nornir/nornir.log
 
 notes_all/

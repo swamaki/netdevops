@@ -16,10 +16,13 @@ commands = input("\nEnter Commands: ")
 cmds = commands.split(",")
 
 for cmd in cmds:
-    nr = InitNornir(config_file="/Users/stephenamaki/Dropbox/netdevops/nornir/config.yaml", dry_run=True)
+    nr = InitNornir(
+        config_file="/Users/stephenamaki/Dropbox/netdevops/nornir/config.yaml",
+        dry_run=True,
+    )
 
-    targets = nr.filter (role="core")
-    result = targets.run(task=netmiko_send_command, command_string=cmd)
+    target_hosts = nr.filter(role="core")
+    result = target_hosts.run(task=netmiko_send_command, command_string=cmd)
 
     print_result(result)
 
