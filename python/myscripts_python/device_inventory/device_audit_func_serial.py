@@ -14,15 +14,43 @@ works as of 05/01/2020
 
 """
 
-INVENTORY_FILE = "device_inventory_scripts\\inventory_devices.yml"
-COMMANDS_FILE = "device_inventory_scripts\\inventory_commands.yml"
+COMMANDS_FILE = "inventory_commands.yml"
+INVENTORY_FILE = "inventory_devices.yml"
 
 GLOBAL_DEVICE_PARAMS = {
     "device_type": "cisco_ios",
     "username": config("USER_NAME"),
     "password": config("PASSWORD"),
 }
-SHOW_VER_RE_LIST = [re.compile(r"(?P<hostname>^\S+)\s+uptime", re.M)]
+# SHOW_VER_RE_LIST = [re.compile(r"(?P<hostname>^\S+)\s+uptime", re.M)]
+
+
+def software_ver_check(sh_ver):
+
+    # Types of devices
+    version_list = [
+        "IOS XE",
+        "NX-OS",
+        "C2960X-UNIVERSALK9-M",
+        "vios_l2-ADVENTERPRISEK9-M",
+        "VIOS-ADVENTERPRISEK9-M",
+    ]
+    # Check software versions
+    for version in version_list:
+        int_version = 0  # Reset integer value
+        int_version = sh_ver.find(version)  # Check software version
+        if int_version > 0:  # software version found, break out of loop.
+            break
+
+    if version == "NX-OS":
+        SHOW_VER_RE_LIST = [
+            re.compile(r"(^\s+)+(Device name:)\s(?P<hostname>\S+)", re.M)
+        ]
+
+    else:  # other cisco ios versions
+        SHOW_VER_RE_LIST = [re.compile(r"(?P<hostname>^\S+)\s+uptime", re.M)]
+
+    return SHOW_VER_RE_LIST
 
 
 def read_inventory(file_name=INVENTORY_FILE):
@@ -47,7 +75,7 @@ def get_commmands_list():
 
 def extract_hostname(sh_ver):
     device_hostname = dict()
-    for regexp in SHOW_VER_RE_LIST:
+    for regexp in software_ver_check(sh_ver):
         device_hostname.update(regexp.search(sh_ver).groupdict())
     return device_hostname
 
@@ -107,7 +135,8 @@ def commands_output(ip_address):
     print("Running commands on {hostname}".format(**parsed_values))
 
     commands_list = get_commmands_list()
-    commands_output = ""
+    # commands_output = ""
+    commands_output = "Running commands on {hostname}".format(**parsed_values)
     for show_command in commands_list:
         commands_output += "\n\n" + ("=" * 80) + "\n\n" + show_command + "\n\n"
         commands_output += device_conn.send_command(show_command)
