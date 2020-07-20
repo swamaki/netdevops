@@ -12,6 +12,7 @@ ansible/vault_password.yml
 books/
 devnet_creds.txt
 editor_settings/
+gns3_settings/
 
 nornir/config.yaml
 nornir/forked_nornir/
@@ -19,6 +20,7 @@ nornir/greptool
 nornir/groups.yaml
 nornir/hosts.yaml
 nornir/nornir.log
+nornir/myscripts_nornir/nornir.log
 
 notes_all/
 

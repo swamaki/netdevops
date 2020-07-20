@@ -17,8 +17,8 @@ from decouple import config
 est = timezone("EST")
 time_now = datetime.datetime.now(est)
 
-COMMANDS_FILE = "device_inventory_scripts\\inventory_commands.yml"
-INVENTORY_FILE = "device_inventory_scripts\\inventory_devices.yml"
+COMMANDS_FILE = "inventory_commands.yml"
+INVENTORY_FILE = "inventory_devices.yml"
 
 
 # username = input("Enter your SSH username:")
@@ -82,7 +82,7 @@ for devices in device_list["devices"]:
         # show_command = str(show_command)
         commands_output = net_connect.send_command(show_command, delay_factor=2)
         # time.sleep(5)
-        output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i" % (
+        output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i.txt" % (
             device_hostname,
             time_now.year,
             time_now.month,

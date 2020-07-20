@@ -22,35 +22,6 @@ GLOBAL_DEVICE_PARAMS = {
     "username": config("USER_NAME"),
     "password": config("PASSWORD"),
 }
-# SHOW_VER_RE_LIST = [re.compile(r"(?P<hostname>^\S+)\s+uptime", re.M)]
-
-
-def software_ver_check(sh_ver):
-
-    # Types of devices
-    version_list = [
-        "IOS XE",
-        "NX-OS",
-        "C2960X-UNIVERSALK9-M",
-        "vios_l2-ADVENTERPRISEK9-M",
-        "VIOS-ADVENTERPRISEK9-M",
-    ]
-    # Check software versions
-    for version in version_list:
-        int_version = 0  # Reset integer value
-        int_version = sh_ver.find(version)  # Check software version
-        if int_version > 0:  # software version found, break out of loop.
-            break
-
-    if version == "NX-OS":
-        SHOW_VER_RE_LIST = [
-            re.compile(r"(^\s+)+(Device name:)\s(?P<hostname>\S+)", re.M)
-        ]
-
-    else:  # other cisco ios versions
-        SHOW_VER_RE_LIST = [re.compile(r"(?P<hostname>^\S+)\s+uptime", re.M)]
-
-    return SHOW_VER_RE_LIST
 
 
 def read_inventory(file_name=INVENTORY_FILE):
@@ -80,6 +51,34 @@ def extract_hostname(sh_ver):
     return device_hostname
 
 
+def software_ver_check(sh_ver):
+
+    # Types of devices
+    version_list = [
+        "IOS XE",
+        "NX-OS",
+        "C2960X-UNIVERSALK9-M",
+        "vios_l2-ADVENTERPRISEK9-M",
+        "VIOS-ADVENTERPRISEK9-M",
+    ]
+    # Check software versions
+    for version in version_list:
+        int_version = 0  # Reset integer value
+        int_version = sh_ver.find(version)  # Check software version
+        if int_version > 0:  # software version found, break out of loop.
+            break
+
+    if version == "NX-OS":
+        parsed_hostname = [
+            re.compile(r"(^\s+)+(Device name:)\s(?P<hostname>\S+)", re.M)
+        ]
+
+    else:  # other cisco ios versions
+        parsed_hostname = [re.compile(r"(?P<hostname>^\S+)\s+uptime", re.M)]
+
+    return parsed_hostname
+
+
 def save_output(device_hostname, commands_output):
 
     """
@@ -96,7 +95,7 @@ def save_output(device_hostname, commands_output):
 
     est = timezone("EST")
     time_now = datetime.datetime.now(est)
-    output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i" % (
+    output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i.txt" % (
         device_hostname,
         time_now.year,
         time_now.month,
@@ -136,7 +135,7 @@ def commands_output(ip_address):
 
     commands_list = get_commmands_list()
     # commands_output = ""
-    commands_output = "Running commands on {hostname}".format(**parsed_values)
+    commands_output = "Current state of {hostname}".format(**parsed_values)
     for show_command in commands_list:
         commands_output += "\n\n" + ("=" * 80) + "\n\n" + show_command + "\n\n"
         commands_output += device_conn.send_command(show_command)

@@ -1,0 +1,318 @@
+Building configuration...
+
+Current configuration : 7419 bytes
+!
+! Last configuration change at 12:50:34 EDT Wed Jul 15 2020
+! NVRAM config last updated at 08:12:59 EDT Fri Jul 17 2020 by admin
+!
+version 15.2
+service timestamps debug datetime msec localtime show-timezone year
+service timestamps log datetime msec localtime show-timezone year
+service password-encryption
+service compress-config
+service sequence-numbers
+!
+hostname CORE-1
+!
+boot-start-marker
+boot-end-marker
+!
+shell processing full
+!
+enable secret 5 $1$0pnV$wbOPIikiv9z7TWuKxLz4e.
+!
+username admin privilege 15 secret 5 $1$mtAD$xhgeTkpMU71VnyUTjzzFL1
+no aaa new-model
+clock timezone EST -5 0
+clock summer-time EDT recurring
+!
+!
+!
+!
+!
+vtp mode transparent
+!
+!
+!
+no ip domain-lookup
+ip domain-name swamaki.local
+ip cef
+no ipv6 cef
+!
+!
+file prompt quiet
+archive
+ log config
+  logging enable
+  logging size 1000
+  hidekeys
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 1-4094 priority 0
+!
+vlan internal allocation policy ascending
+!
+vlan 10,100,224 
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0
+ no switchport
+ ip address 192.168.224.102 255.255.255.0
+ negotiation auto
+ no cdp enable
+!
+interface GigabitEthernet1/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ spanning-tree portfast edge
+!
+interface GigabitEthernet2/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ spanning-tree portfast edge
+!
+interface GigabitEthernet2/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ channel-group 1 mode active
+!
+interface GigabitEthernet3/3
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+ channel-group 1 mode active
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 10.224.10.2 255.255.255.0
+ standby 10 ip 10.224.10.1
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface Vlan224
+ ip address 169.254.224.2 255.255.255.0
+ standby 224 ip 169.254.224.1
+ standby 224 priority 110
+ standby 224 preempt
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip route 0.0.0.0 0.0.0.0 192.168.224.1
+ip ssh logging events
+ip ssh version 2
+ip scp server enable
+!
+ip access-list standard NTP_ACCESS
+ permit 192.5.41.40
+ permit 192.5.41.41
+!
+!
+ip sla 3
+ icmp-echo 169.254.224.3 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 3 life forever start-time now
+ip sla 4
+ icmp-echo 169.254.224.4 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 4 life forever start-time now
+ip sla 5
+ icmp-echo 169.254.224.5 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 5 life forever start-time now
+ip sla 11
+ icmp-echo 169.254.224.11 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 11 life forever start-time now
+ip sla 12
+ icmp-echo 169.254.224.12 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 12 life forever start-time now
+ip sla 13
+ icmp-echo 169.254.224.13 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 13 life forever start-time now
+ip sla 14
+ icmp-echo 169.254.224.14 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 14 life forever start-time now
+ip sla 15
+ icmp-echo 169.254.224.15 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 15 life forever start-time now
+ip sla 85
+ icmp-echo 169.254.224.85 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 85 life forever start-time now
+ip sla 86
+ icmp-echo 169.254.224.86 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 86 life forever start-time now
+ip sla 87
+ icmp-echo 169.254.224.87 source-ip 192.168.224.102
+ threshold 500
+ timeout 1000
+ frequency 5
+ip sla schedule 87 life forever start-time now
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 480 0
+ privilege level 15
+ logging synchronous
+ login local
+line aux 0
+line vty 0 4
+ exec-timeout 480 0
+ logging synchronous
+ login local
+ transport input all
+line vty 5 15
+ exec-timeout 480 0
+ logging synchronous
+ login local
+ transport input all
+!
+ntp allow mode control 15
+ntp access-group peer NTP_ACCESS
+ntp server 192.5.41.40
+ntp server 192.5.41.41
+!
+end
