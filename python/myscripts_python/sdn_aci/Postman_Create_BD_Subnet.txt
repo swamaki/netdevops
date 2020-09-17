@@ -1,0 +1,67 @@
+
+https://sandboxapicdc.cisco.com/api/mo/uni/tn-PROD.json
+method:POST
+
+{
+	"totalCount": "1",
+	"imdata": [
+		{
+			"fvBD": {
+				"attributes": {
+					"OptimizeWanBandwidth": "no",
+					"annotation": "",
+					"arpFlood": "no",
+					"descr": "",
+					"dn": "uni/tn-PROD/BD-BD_Test",
+					"epClear": "no",
+					"epMoveDetectMode": "",
+					"hostBasedRouting": "no",
+					"intersiteBumTrafficAllow": "no",
+					"intersiteL2Stretch": "no",
+					"ipLearning": "yes",
+					"limitIpLearnToSubnets": "yes",
+					"llAddr": "::",
+					"mac": "00:22:BD:F8:19:FF",
+					"mcastAllow": "no",
+					"multiDstPktAct": "bd-flood",
+					"name": "BD_Test",
+					"nameAlias": "",
+					"ownerKey": "",
+					"ownerTag": "",
+					"type": "regular",
+					"unicastRoute": "yes",
+					"unkMacUcastAct": "proxy",
+					"unkMcastAct": "flood",
+					"v6unkMcastAct": "flood",
+					"vmac": "not-applicable"
+				},
+				"children": [
+					{
+						"fvRsCtx": {
+							"attributes": {
+								"annotation": "",
+								"tnFvCtxName": "VRF1"
+							}
+						}
+					},
+					{
+						"fvSubnet": {
+							"attributes": {
+								"annotation": "",
+								"ctrl": "",
+								"descr": "",
+								"ip": "10.255.1.1/24",
+								"name": "",
+								"nameAlias": "",
+								"preferred": "yes",
+								"scope": "private",
+								"virtual": "no"
+							}
+						}
+					},
+					
+				]
+			}
+		}
+	]
+}

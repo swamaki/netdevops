@@ -94,6 +94,6 @@ for devices in devices_list:
 
 
 '''
-confirmed working 04/26/2020
+confirmed working
 
 '''

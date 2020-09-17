@@ -1,0 +1,93 @@
+2020-07-21 11:37:25,991 -  nornir.core -     INFO -        run() - Running task 'get_facts' with args {} on 2 hosts
+2020-07-21 11:38:41,267 - nornir.core.task -    ERROR -      start() - Host 'CORE-2': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.3:22
+
+2020-07-21 11:38:41,272 - nornir.core.task -    ERROR -      start() - Host 'CORE-1': task 'netmiko_send_command' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 884, in establish_connection
+    self.remote_conn_pre.connect(**ssh_connect_params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/util.py", line 283, in retry_on_signal
+    return function()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/paramiko/client.py", line 349, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/tasks/networking/netmiko_send_command.py", line 26, in netmiko_send_command
+    net_connect = task.host.get_connection("netmiko", task.nornir.config)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 294, in get_connection
+    self.open_connection(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/inventory.py", line 345, in open_connection
+    self.connections[connection].open(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/plugins/connections/netmiko.py", line 58, in open
+    self.connection = ConnectHandler(**parameters)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/ssh_dispatcher.py", line 246, in ConnectHandler
+    return ConnectionClass(*args, **kwargs)
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 317, in __init__
+    self._open()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 322, in _open
+    self.establish_connection()
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/netmiko/base_connection.py", line 890, in establish_connection
+    raise NetMikoTimeoutException(msg)
+netmiko.ssh_exception.NetMikoTimeoutException: Connection to device timed-out: cisco_ios 169.254.224.2:22
+
+2020-07-21 11:38:41,276 - nornir.core.task -    ERROR -      start() - Host 'CORE-2': task 'get_facts' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "3-trace.py", line 8, in get_facts
+    r = task.run(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 147, in run
+    raise NornirSubTaskError(task=task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: <function netmiko_send_command at 0x7fdce8a9a3a0> (failed)
+
+
+2020-07-21 11:38:41,280 - nornir.core.task -    ERROR -      start() - Host 'CORE-1': task 'get_facts' failed with traceback:
+Traceback (most recent call last):
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 85, in start
+    r = self.task(self, **self.params)
+  File "3-trace.py", line 8, in get_facts
+    r = task.run(
+  File "/Users/stephenamaki/Dropbox/netdevops/venv_nornir/lib/python3.8/site-packages/nornir/core/task.py", line 147, in run
+    raise NornirSubTaskError(task=task, result=r)
+nornir.core.exceptions.NornirSubTaskError: Subtask: <function netmiko_send_command at 0x7fdce8a9a3a0> (failed)
+
+

@@ -1,0 +1,24 @@
+
+https://sandboxapicdc.cisco.com/api/mo/uni/tn-PROD/BD-BD_Test2.json
+
+
+{
+    "totalCount": "1",
+    "imdata": [
+        {
+            "fvSubnet": {
+                "attributes": {
+                    "ctrl": "",
+                    "descr": "",
+                    "ip": "10.239.2.1/24",
+                    "name": "",
+                    "nameAlias": "",
+                    "preferred": "no",
+                    "scope": "public",
+                    "status": "",
+                    "virtual": "no"
+                }
+            }
+        }
+    ]
+}

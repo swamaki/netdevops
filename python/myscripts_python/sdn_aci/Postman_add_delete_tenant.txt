@@ -1,0 +1,75 @@
+Example: Using the JSON API to Add a Tenant
+To create a new tenant, you must specify the class and sufficient naming information, either in the message body or in the URI.
+
+To create a new tenant using the JSON API, send this HTTP POST message:
+
+
+POST https://apic-ip-address/api/mo/uni.json
+
+{
+  "fvTenant" : {
+    "attributes" : {
+      "name" : "ExampleCorp"
+    }
+  }
+}
+
+
+--------------------------------------------
+
+
+Alternatively, you can name the tenant in the URI, as in this example:
+
+
+POST https://apic-ip-address/api/mo/uni/tn-ExampleCorp.json
+
+{
+  "fvTenant" : {
+    "attributes" : {
+    }
+  }
+}
+
+
+--------------------------------------------
+
+If a response is requested (by appending ?rsp-subtree=modified to the POST URI), a successful operation returns the following response body:
+
+
+{
+  "imdata" :
+  [{
+      "fvTenant" : {
+        "attributes" : {
+          "instanceId" : "0:0",
+          "childAction" : "deleteNonPresent",
+          "dn" : "uni/tn-ExampleCorp",
+          "lcOwn" : "local",
+          "name" : "ExampleCorp",
+          "replTs" : "never",
+          "rn" : "",
+          "status" : "created"
+        }
+      }
+    }
+  ]
+}
+
+To delete the tenant, send this HTTP DELETE message:
+
+
+DELETE https://apic-ip-address/api/mo/uni/tn-ExampleCorp.json
+
+Alternatively, you can send an HTTP POST message with sufficient naming information and with "status" : "deleted" in the fv:Tenant attributes, as in this example:
+
+
+POST https://apic-ip-address/api/mo/uni.json
+
+{
+  "fvTenant" : {
+    "attributes" : {
+      "name" : "ExampleCorp",
+      "status" : "deleted"
+    }
+  }
+}

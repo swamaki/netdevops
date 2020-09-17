@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "99281892-3292-49eb-947c-77c301e16aa0",
+		"name": "Cisco ACI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t    \"aaaUser\": {\r\n\t\t    \"attributes\": {\r\n\t\t\t    \"name\": \"admin\"\r\n\t\t\t\t\"pwd\": \"ciscopsdt\"\r\n\t\t\t}\r\n\t\t}\t\r\n\t}"
+						},
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/aaaLogin.json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"aaaLogin.json"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ACI requests",
+			"item": [
+				{
+					"name": "BridgeDomain_Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/node/mo/uni/tn-PROD/BD-BD3.json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"node",
+								"mo",
+								"uni",
+								"tn-PROD",
+								"BD-BD3.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BridgeDomain_plusChildren",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/node/mo/uni/tn-PROD/BD-BD3.json?query-target=children",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"node",
+								"mo",
+								"uni",
+								"tn-PROD",
+								"BD-BD3.json"
+							],
+							"query": [
+								{
+									"key": "query-target",
+									"value": "children"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BridgeDomain_class",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/class/fvBD.json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"class",
+								"fvBD.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Subnet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalCount\": \"1\",\r\n    \"imdata\": [\r\n        {\r\n            \"fvSubnet\": {\r\n                \"attributes\": {\r\n                    \"ctrl\": \"\",\r\n                    \"descr\": \"\",\r\n                    \"ip\": \"10.239.2.1/24\",\r\n                    \"name\": \"\",\r\n                    \"nameAlias\": \"\",\r\n                    \"preferred\": \"no\",\r\n                    \"scope\": \"public\",\r\n                    \"status\": \"\",\r\n                    \"virtual\": \"no\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/mo/uni/tn-PROD/BD-BD_Test2.json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"mo",
+								"uni",
+								"tn-PROD",
+								"BD-BD_Test2.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_BD_and_Subnet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/mo/uni/tn-PROD.json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"mo",
+								"uni",
+								"tn-PROD.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Subnet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalCount\": \"1\",\r\n    \"imdata\": [\r\n        {\r\n            \"fvSubnet\": {\r\n                \"attributes\": {\r\n                    \"ctrl\": \"\",\r\n                    \"descr\": \"\",\r\n                    \"ip\": \"10.255.1.1/24\",\r\n                    \"name\": \"\",\r\n                    \"nameAlias\": \"\",\r\n                    \"preferred\": \"no\",\r\n                    \"scope\": \"public\",\r\n                    \"status\": \"\",\r\n                    \"virtual\": \"no\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/mo/uni/tn-PROD/BD-BD_Test2.json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"mo",
+								"uni",
+								"tn-PROD",
+								"BD-BD_Test2.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Subnet2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalCount\": \"1\",\r\n    \"imdata\": [\r\n        {\r\n            \"fvSubnet\": {\r\n                \"attributes\": {\r\n                    \"ctrl\": \"\",\r\n                    \"descr\": \"\",\r\n                    \"ip\": \"10.239.1.1/24\",\r\n                    \"name\": \"\",\r\n                    \"nameAlias\": \"\",\r\n                    \"preferred\": \"no\",\r\n                    \"scope\": \"public\",\r\n                    \"status\": \"\",\r\n                    \"virtual\": \"no\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "https://sandboxapicdc.cisco.com/api/node/mo/uni/tn-PROD/BD-BD_Test2/subnet-[10.239.2.1/24].json",
+							"protocol": "https",
+							"host": [
+								"sandboxapicdc",
+								"cisco",
+								"com"
+							],
+							"path": [
+								"api",
+								"node",
+								"mo",
+								"uni",
+								"tn-PROD",
+								"BD-BD_Test2",
+								"subnet-[10.239.2.1",
+								"24].json"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
