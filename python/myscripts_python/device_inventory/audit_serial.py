@@ -14,8 +14,8 @@ works as of 05/01/2020
 
 """
 
-COMMANDS_FILE = "inventory_commands.yml"
-INVENTORY_FILE = "inventory_devices.yml"
+COMMANDS_FILE = "commands.yml"
+INVENTORY_FILE = "devices.yml"
 
 GLOBAL_DEVICE_PARAMS = {
     "device_type": "cisco_ios",
@@ -23,26 +23,26 @@ GLOBAL_DEVICE_PARAMS = {
     "password": config("PASSWORD"),
 }
 
+# from getpass import getpass
+# USER_NAME = input("Enter your SSH username:")
+# PASSWORD = getpass()
 
-def read_inventory(file_name=INVENTORY_FILE):
+# GLOBAL_DEVICE_PARAMS = {
+#     "device_type": "cisco_ios",
+#     "username": USER_NAME,
+#     "password": PASSWORD,
+# }
+
+
+def get_devices_list(file_name=INVENTORY_FILE):
     with open(file_name) as f:
         result = yaml.safe_load(f)
-    return result
+    return result["devices"]
 
-
-def get_devices_list():
-    return read_inventory()["devices"]
-
-
-def read_commands(file_name=COMMANDS_FILE):
+def get_commmands_list(file_name=COMMANDS_FILE):
     with open(file_name) as f:
         result = yaml.safe_load(f)
-    return result
-
-
-def get_commmands_list():
-    return read_commands()["commands"]
-
+    return result["commands"]
 
 def extract_hostname(sh_ver):
     device_hostname = dict()
@@ -95,7 +95,7 @@ def save_output(device_hostname, commands_output):
 
     est = timezone("EST")
     time_now = datetime.datetime.now(est)
-    output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i.txt" % (
+    output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i.log" % (
         device_hostname,
         time_now.year,
         time_now.month,
@@ -127,28 +127,41 @@ def commands_output(ip_address):
 
     device_params = GLOBAL_DEVICE_PARAMS.copy()
     device_params["ip"] = ip_address
-    device_conn = ConnectHandler(**device_params)
-
     parsed_values = dict()
-    parsed_values.update(extract_hostname(device_conn.send_command("show version")))
-    print("Running commands on {hostname}".format(**parsed_values))
 
-    commands_list = get_commmands_list()
-    # commands_output = ""
-    commands_output = "Current state of {hostname}".format(**parsed_values)
-    for show_command in commands_list:
-        commands_output += "\n\n" + ("=" * 80) + "\n\n" + show_command + "\n\n"
-        commands_output += device_conn.send_command(show_command)
+    try: 
+        device_conn = ConnectHandler(**device_params)
+        parsed_values.update(extract_hostname(device_conn.send_command("show version")))
+        print("Running commands on {hostname}".format(**parsed_values))
 
-    # save_output("{hostname}".format(**parsed_values), commands_output)
-    result = {
-        "device_hostname": "{hostname}".format(**parsed_values),
-        "commands_output": commands_output,
-    }
-    device_conn.disconnect()
-    return result
+        commands_list = get_commmands_list()
+        # commands_output = ""
+        commands_output = "Current state of {hostname}".format(**parsed_values)
+        for show_command in commands_list:
+            commands_output += "\n\n" + ("=" * 80) + "\n\n" + show_command + "\n\n"
+            commands_output += device_conn.send_command(show_command)
 
+        # save_output("{hostname}".format(**parsed_values), commands_output)
+        result = {
+            "device_hostname": "{hostname}".format(**parsed_values),
+            "commands_output": commands_output,
+        }
+        device_conn.disconnect()
+        return result
 
+    # except netdev.exceptions.DisconnectError as e:
+    except Exception as e:
+        exception_msg = "Unable to login to device " + ip_address + "\n"
+        exception_msg+= "\n" + ("=" * 80) + "\n"
+        result = {
+                "device_hostname": ip_address,
+                "commands_output": exception_msg,
+            }
+        print("Unable to login to device " + ip_address)
+        print (e)
+        return result
+
+ 
 def main():
     start_time = time.time()
 

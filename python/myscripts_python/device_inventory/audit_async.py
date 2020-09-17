@@ -3,21 +3,19 @@
 import time
 import datetime
 from pytz import timezone
-import re
 from decouple import config
+import re
 import yaml
 import asyncio
 import netdev
 
 """
-works as of 05/01/2020
+works as of 
 
-cd into "device_inventory" folder and execute the script
 """
 
-
-COMMANDS_FILE = "inventory_commands.yml"
-INVENTORY_FILE = "inventory_devices.yml"
+COMMANDS_FILE = "commands.yml"
+INVENTORY_FILE = "devices.yml"
 
 GLOBAL_DEVICE_PARAMS = {
     "device_type": "cisco_ios",
@@ -25,33 +23,31 @@ GLOBAL_DEVICE_PARAMS = {
     "password": config("PASSWORD"),
 }
 
+# from getpass import getpass
+# USER_NAME = input("Enter your SSH username:")
+# PASSWORD = getpass()
 
-def read_inventory(file_name=INVENTORY_FILE):
+# GLOBAL_DEVICE_PARAMS = {
+#     "device_type": "cisco_ios",
+#     "username": USER_NAME,
+#     "password": PASSWORD,
+# }
+
+def get_devices_list(file_name=INVENTORY_FILE):
     with open(file_name) as f:
         result = yaml.safe_load(f)
-    return result
+    return result["devices"]
 
-
-def get_devices_list():
-    return read_inventory()["devices"]
-
-
-def read_commands(file_name=COMMANDS_FILE):
+def get_commmands_list(file_name=COMMANDS_FILE):
     with open(file_name) as f:
         result = yaml.safe_load(f)
-    return result
-
-
-def get_commmands_list():
-    return read_commands()["commands"]
-
+    return result["commands"]
 
 def extract_hostname(sh_ver):
     device_hostname = dict()
     for regexp in software_ver_check(sh_ver):
         device_hostname.update(regexp.search(sh_ver).groupdict())
     return device_hostname
-
 
 def software_ver_check(sh_ver):
 
@@ -96,7 +92,7 @@ def save_output(device_hostname, commands_output):
 
     est = timezone("EST")
     time_now = datetime.datetime.now(est)
-    output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i.txt" % (
+    output_filename = "%s_%.2i%.2i%i_%.2i%.2i%.2i.log" % (
         device_hostname,
         time_now.year,
         time_now.month,
@@ -129,37 +125,51 @@ async def commands_output(ip_address):
     device_params = GLOBAL_DEVICE_PARAMS.copy()
     device_params["host"] = ip_address
     parsed_values = dict()
+    
+    try: 
+        async with netdev.create(**device_params) as device_conn:
+            show_version_output = await device_conn.send_command("show version")
+            parsed_values.update(extract_hostname(show_version_output))
+            print("Running commands on {hostname}".format(**parsed_values))
 
-    async with netdev.create(**device_params) as device_conn:
-        show_version_output = await device_conn.send_command("show version")
-        parsed_values.update(extract_hostname(show_version_output))
-        print("Running commands on {hostname}".format(**parsed_values))
+            commands_list = get_commmands_list()
+            commands_output = ["Ping/Traceroute commands of {hostname}".format(**parsed_values)]
+            for show_command in commands_list:
+                commands_output.append("\n" + ("-" * 60) + "\n\n" + show_command + "\n\n")
+                commands_output.append(await device_conn.send_command(show_command))
+            commands_output.append("\n" + ("=" * 80) + "\n")
+            all_commands_output = "\n".join(commands_output)
 
-        commands_list = get_commmands_list()
-        # commands_output = []
-        commands_output = ["Current state of {hostname}".format(**parsed_values)]
-        for show_command in commands_list:
-            commands_output.append("\n\n" + ("=" * 80) + "\n\n" + show_command + "\n\n")
-            commands_output.append(await device_conn.send_command(show_command))
-        all_commands_output = "\n".join(commands_output)
+            result = {
+                "device_hostname": "{hostname}".format(**parsed_values),
+                "commands_output": all_commands_output,
+            }
+            return result
+            # yield result
 
+    # except netdev.exceptions.DisconnectError as e:
+    except Exception as e:
+        exception_msg = "Unable to login to device " + ip_address + "\n"
+        exception_msg+= str(e)
+        exception_msg+= "\n" + ("=" * 80) + "\n"
         result = {
-            "device_hostname": "{hostname}".format(**parsed_values),
-            "commands_output": all_commands_output,
-        }
+                "device_hostname": ip_address,
+                "commands_output": exception_msg,
+            }
+        print("Unable to login to device " + ip_address)
+        print (e)
         return result
-        # yield result
 
 
 def main():
+
     start_time = time.time()
 
     ip_list = get_devices_list()
 
     loop = asyncio.get_event_loop()
     tasks = [loop.create_task(commands_output(ip)) for ip in ip_list]
-
-    loop.run_until_complete(asyncio.wait(tasks))
+    loop.run_until_complete(asyncio.gather(*tasks))
 
     for task in tasks:
         save_output(task.result()["device_hostname"], task.result()["commands_output"])

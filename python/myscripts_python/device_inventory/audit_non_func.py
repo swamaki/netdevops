@@ -17,8 +17,8 @@ from decouple import config
 est = timezone("EST")
 time_now = datetime.datetime.now(est)
 
-COMMANDS_FILE = "inventory_commands.yml"
-INVENTORY_FILE = "inventory_devices.yml"
+COMMANDS_FILE = "commands.yml"
+INVENTORY_FILE = "devices.yml"
 
 
 # username = input("Enter your SSH username:")
